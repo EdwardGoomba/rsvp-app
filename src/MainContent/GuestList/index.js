@@ -15,20 +15,20 @@ const GuestList = props =>
           name={guest.name}
           isConfirmed={guest.isConfirmed}
           isEditing={guest.isEditing}
-          handleConfirmation={() => props.toggleConfirmationAt(index)}
-          handeToggleEditing={() => props.toggleEditingAt(index)}
-          setName={text => props.setNameAt(text, index)}
-          handleRemove={() => props.removeGuestAt(index)} />
+          handleConfirmation={() => props.toggleConfirmation(guest.id)}
+          handeToggleEditing={() => props.toggleEditing(guest.id)}
+          setName={text => props.setName(text, guest.id)}
+          handleRemove={() => props.removeGuest(guest.id)} />
       )}
   </ul>;
 
 GuestList.propTypes = {
   guests: PropTypes.array.isRequired,
-  toggleConfirmationAt: PropTypes.func.isRequired,
-  toggleEditingAt: PropTypes.func.isRequired,
-  setNameAt: PropTypes.func.isRequired,
+  toggleConfirmation: PropTypes.func.isRequired,
+  toggleEditing: PropTypes.func.isRequired,
+  setName: PropTypes.func.isRequired,
   isFiltered: PropTypes.bool.isRequired,
-  removeGuestAt: PropTypes.func.isRequired,
+  removeGuest: PropTypes.func.isRequired,
   pendingGuest: PropTypes.string.isRequired
 };
 
