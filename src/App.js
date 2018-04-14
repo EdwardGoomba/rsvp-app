@@ -6,6 +6,7 @@ class App extends Component {
 
   state = {
     isFiltered: false,
+    pendingGuest: '',
     guests: [
       {
         name: 'Edward',
@@ -41,7 +42,15 @@ class App extends Component {
     
   toggleConfirmationAt = index =>
     this.toggleGuestPropertyAt('isConfirmed', index);
-    
+  
+  removeGuestAt = index =>
+    this.setState({
+      guests: [
+        ...this.state.guests.slice(0, index),
+        ...this.state.guests.slice(index +1)
+      ]
+    });  
+
   toggleEditingAt = index =>
     this.toggleGuestPropertyAt('isEditing', index);
   
@@ -60,6 +69,9 @@ class App extends Component {
   
   toggleFilter = () =>
     this.setState({ isFiltered: !this.state.isFiltered });
+    
+  handleNameInput = e =>
+    this.setState({ pendingGuest: e.target.value });
       
   getTotalInvited = () => this.state.guests.length;
   // getAttendingGuests = () =>
@@ -71,7 +83,11 @@ class App extends Component {
         <header>
           <h1>RSVP</h1>
           <form>
-            <input type="text" value="Safia" placeholder="Invite Someone" />
+            <input 
+              type="text" 
+              onChange={this.handleNameInput}
+              value={this.state.pendingGuest}
+              placeholder="Invite Someone" />
             <button type="submit" name="submit" value="submit">Submit</button>
           </form>
         </header>
@@ -107,7 +123,8 @@ class App extends Component {
           toggleConfirmationAt={this.toggleConfirmationAt}
           toggleEditingAt={this.toggleEditingAt}
           setNameAt={this.setNameAt}
-          isFiltered={this.state.isFiltered} />
+          isFiltered={this.state.isFiltered} 
+          removeGuestAt={this.removeGuestAt} />
 
         </div>
       </div>

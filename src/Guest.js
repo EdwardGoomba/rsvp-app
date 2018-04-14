@@ -20,7 +20,7 @@ const Guest = props =>
     <button onClick={props.handleToggleEditing}>
       {props.isEditing ? 'save' :'edit'}
     </button>
-    <button>remove</button>
+    <button onClick={props.handleRemove}>remove</button>
   </li>;
 
 
@@ -31,7 +31,8 @@ Guest.propTypes = {
   isEditing: PropTypes.bool.isRequired,
   handleConfirmation: PropTypes.func.isRequired,
   handleToggleEditing: PropTypes.func.isRequired,
-  setName: PropTypes.func.isRequired
+  setName: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired
 };
 
 export default Guest;
